@@ -4,6 +4,8 @@ import logging
 import asyncio
 from aiogram import Bot,Dispatcher,types,F
 from aiogram.filters import Command
+from aiogram.client.session.aiohttp import AiohttpSession
+
 
 class SorawJuwapState(StatesGroup):
     name=State()
@@ -14,7 +16,8 @@ class SorawJuwapState(StatesGroup):
 
 
 api='8818722219:AAGUBwg4xN4Gwl8pAyOiUzX6iSIkfph6R0s'
-bot=Bot(api)
+session = AiohttpSession(proxy='http://proxy.server:3128')
+bot=Bot(api,session=session)
 dp=Dispatcher()
 
 @dp.message(Command('start'))
